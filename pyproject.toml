@@ -1,0 +1,27 @@
+[project]
+name = "call-agent"
+version = "0.1.0"
+description = "Outbound AI voice calling agent with lead extraction (self-hosted, open-source models)"
+requires-python = ">=3.11"
+dependencies = [
+    "livekit-agents[openai,silero,turn-detector]~=1.8",
+    "livekit-api>=1.2.3",
+    "pydantic-settings>=2.16.3",
+    "python-dotenv>=1.2.4",
+]
+
+[project.optional-dependencies]
+# Self-hosted STT (faster-whisper) + TTS (Kokoro) server. Install on the GPU/model box:
+#   uv sync --extra speech
+speech = [
+    "fastapi>=0.162.7",
+    "faster-whisper>=1.2.1",
+    "kokoro-onnx>=0.6.1",
+    "numpy>=2.4.6",
+    "python-multipart>=0.0.33",
+    "soundfile>=0.14.0",
+    "uvicorn[standard]>=0.54.0",
+]
+
+[tool.uv]
+package = false
